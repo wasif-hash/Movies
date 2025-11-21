@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import Header from "@/components/header"
 import BookingSummaryContent from "@/components/booking-summary-content"
 
@@ -15,7 +15,9 @@ export default function BookingSummaryPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header selectedCity={selectedCity} setSelectedCity={setSelectedCity} navItems={navItems} />
-      <BookingSummaryContent />
+      <Suspense fallback={<div className="px-6 py-12 text-center text-muted-foreground">Loading summary…</div>}>
+        <BookingSummaryContent />
+      </Suspense>
     </main>
   )
 }
